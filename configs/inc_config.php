@@ -43,7 +43,7 @@ $config = [
     'redis' => [
         'host'          => '127.0.0.1',
         'port'   		=> 6379,
-        'auth_password' => '',
+        'auth_password' => 123456,
         "persistent"    => false,
         'lifttime'      => 86400
     ],

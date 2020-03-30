@@ -302,7 +302,7 @@ class WebRedis  extends Component {
 		return $data;
 	}
 
-	public function incr($key,$db){
+	public function incr($key,$db = ""){
 		$this->connect($db,'w');
 		return $this -> _redis->incr($key);
 	}
