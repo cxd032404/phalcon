@@ -144,7 +144,7 @@ class WebRedis  extends Component {
 	/**
 	 * 写入数据
 	 */
-	public function write($key,$data,$db,$lifetime=0) {
+	public function write($key,$data,$db = '',$lifetime=0) {
 		$this -> connect($db,'w');
 		$this -> _redis -> multi();
 		if (is_array($data))
@@ -257,7 +257,7 @@ class WebRedis  extends Component {
 	 * @param $db 数据库标识
 	 * @param $type 类型 0:不做任何处理 1：string 2:hash 3:list 4:set 5:zset
 	 */
-	public function read($key,$db,$type=1) {
+	public function read($key,$db = '',$type=1) {
 		$data = null;
 		$this -> connect($db);
 		if ($this -> _redis -> exists($key)) {
@@ -293,7 +293,7 @@ class WebRedis  extends Component {
     * @link   
     * @date   
     */
-	public function read_multi($keys,$db,$type=1) {
+	public function read_multi($keys,$db = '',$type=1) {
 		$data = null;
 		$this-> connect($db);
 		if(is_array($keys) && !empty($keys)){
@@ -308,17 +308,17 @@ class WebRedis  extends Component {
 	}
 
 	//加上指定数量
-	public function incrBy($key,$db,$increment){
+	public function incrBy($key,$db = '',$increment){
 		$this->connect($db,'w');
 		return $this -> _redis->incrBy($key,$increment);
 	}
 
-	public function decr($key,$db){
+	public function decr($key,$db = ''){
 		$this->connect($db,'w');
 		return $this -> _redis->decr($key);
 	}
 
-	public function decrBy($key,$db,$decrement){
+	public function decrBy($key,$db = '',$decrement){
 		$this->connect($db,'w');
 		return $this -> _redis->incrBy($key,$decrement);
 	}
