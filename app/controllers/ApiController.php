@@ -17,14 +17,19 @@ class ApiController extends BaseController
 
 	public function testAction( $id = 0 ) 
 	{
-		//echo "<pre>";print_r( phpinfo() );exit;
-		$yac = new \Yac();
-		$key = 'key';
-		$yac->set( $key, ['id' => 111111]);
+        $return = $this->database->fetchAll("show tables;");
+        $return1 = $this->database_1->fetchAll("select * from test_table;");
+        print_R($return);print_R($return1);//die();
+        $redis = $this->redis->incr("redis-test");
+        echo "redis:".$redis;
+        die();
+        $yac = new \Yac();
+        $key = 'key';
+        $yac->set( $key, ['id' => 111111]);
 
-		$ret = $yac->get($key);
+        $ret = $yac->get($key);
 
-		//echo "<pre>";print_r( $yac->info() );exit;
+        //echo "<pre>";print_r( $yac->info() );exit;
 
         return $this->success(["ret" => $ret]);
     }

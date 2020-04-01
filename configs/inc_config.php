@@ -30,20 +30,20 @@ $config = [
         'adapter'  => 'Mysql',
         'host'     => '127.0.0.1',
         'username' => 'root',
-        'password' => 'root',
-        'dbname'   => 'thinkcmf5'
+        'password' => '',
+        'dbname'   => 'swoole_test'
     ],
     'database_1' => [ // 文章发布库
         'adapter'  => 'Mysql',
         'host'     => '127.0.0.1',
         'username' => 'root',
-        'password' => 'root',
-        'dbname'   => 'thinkcmf5'
+        'password' => '',
+        'dbname'   => 'swoole_test2'
     ],
     'redis' => [
         'host'          => '127.0.0.1',
         'port'   		=> 6379,
-        'auth_password' => '',
+        'auth_password' => '123456',
         "persistent"    => false,
         'lifttime'      => 86400
     ],
@@ -56,7 +56,7 @@ $config = [
         'path'     => ROOT_PATH . '/runtime/logs/',
         'format'   => '%date% [%type%] %message%',
         'date'     => 'H:i:s',
-        'logLevel' => Logger::DEBUG,
+        //'logLevel' => Logger::DEBUG,
         'filename' => 'apps-'.date('Y-m-d') .'.log',
     ],
     'upload' => [

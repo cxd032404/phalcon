@@ -110,24 +110,30 @@ class Bootstrap
 			return require_once (ROOT_PATH . '/configs/inc_routes.php');
 		};
 	}
-	
-	/**
-	 * 注册数据库访问服务
-	 */
-	protected function initDatabase( $options = [] ): void
-	{
-		$config = $this->di['config'];
-		$this->di['db'] = function() use ( $config ) {
-			return new \Phalcon\Db\Adapter\Pdo\Mysql([
-        		'host'       => $config->database->host,
-        		'username'   => $config->database->username,
-        		'password'   => $config->database->password,
-        		'charset'    => 'UTF8',
-        		'dbname'     => $config->database->dbname,
-        		'persistent' => true
-    		]);
-		};
-	}
+
+    /**
+     * 注册数据库访问服务
+     */
+    protected function initDatabase( $options = [] ): void
+    {
+        $config = $this->di['config'];
+        foreach($config as $k => $c)
+        {
+            if($c['adapter'] == "Mysql")
+            {
+                $this->di[$k] = function() use ( $c ) {
+                    return new \Phalcon\Db\Adapter\Pdo\Mysql([
+                        'host'       => $c->host,
+                        'username'   => $c->username,
+                        'password'   => $c->password,
+                        'charset'    => 'UTF8',
+                        'dbname'     => $c->dbname,
+                        'persistent' => true
+                    ]);
+                };
+            }
+        }
+    }
 
 	/**
 	 * cache
