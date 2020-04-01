@@ -54,9 +54,10 @@ class Bootstrap
 			'Cache',    # 初始化缓存
 			'View', 	# 初始化视图服务
 			'WebCurl',  # 初始化远程请求服务
-			'WebRedis', # 初始化Redis 服务
+			//'WebRedis', # 初始化Redis 服务
 			'WebPages', # 初始化页面服务
-			'Logger'	# 初始化写日志服务
+			'Logger',	# 初始化写日志服务
+            'Redis',    # 初始化Redis服务
 		];
 		foreach ($loaders as $service) {
 			$function = 'init' . $service;
@@ -216,7 +217,7 @@ class Bootstrap
 	 * @param array $options 需要传值的数组对象
 	 * @return void
 	 */
-	protected function initWebRedis( $options = [] ): void
+	protected function initRedis( $options = [] ): void
 	{
 		$di = $this->di;
 

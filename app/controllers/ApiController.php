@@ -19,11 +19,11 @@ class ApiController extends BaseController
 	{
         $return = $this->database->fetchAll("show tables;");
         $return1 = $this->database_1->fetchAll("select * from test_table;");
-        print_R($return);print_R($return1);//die();
+        //print_R($return);print_R($return1);//die();
         $redis = $this->redis->incr("redis-test");
-        echo "redis:".$redis;
-        die();
-        $yac = new \Yac();
+        //echo "redis:".$redis."\n";//phpinfo();
+        //die();
+        $yac = new Yac();
         $key = 'key';
         $yac->set( $key, ['id' => 111111]);
 
@@ -31,7 +31,7 @@ class ApiController extends BaseController
 
         //echo "<pre>";print_r( $yac->info() );exit;
 
-        return $this->success(["ret" => $ret]);
+        return $this->success(["ret" => $ret,'redis'=>$redis,"r1"=>$return1,"r"=>$return]);
     }
 
 }
