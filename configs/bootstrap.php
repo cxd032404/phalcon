@@ -21,6 +21,7 @@ use Phalcon\Cache\Backend\File as BackFile;
 use Phalcon\Cache\Frontend\Data as FrontData;
 use Phalcon\Mvc\View\Engine\Volt as PhVolt;
 use Predis\Client;
+use Predis\Autoloader;
 
 class Bootstrap 
 {
@@ -227,12 +228,16 @@ class Bootstrap
                 $this->di[$k] = function() use ( $c ) {
                     $r =  new Client([
                         'host'       => $c->host,
-                        'port'       => $c->port,
+                        //'port'       => $c->port,
+                    ],['cluster'=>'redis',
+                        'parameters' => [
+                            'password' => $c->auth_password]
                     ]);
-                    if($c->auth_password != "")
+                    /*if($c->auth_password != "")
                     {
                         $r->auth($c->auth_password);
                     }
+                    */
                     return $r;
                 };
             }

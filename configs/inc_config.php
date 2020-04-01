@@ -42,8 +42,8 @@ $config = [
     ],
     'redis' => [
         'adapter'       => 'Redis',
-        'host'          => '127.0.0.1',
-        'port'   		=> 6379,
+        'host'          => '127.0.0.1:6379',
+        //'port'   		=> 6379,
         'auth_password' => '123456',
         "persistent"    => false,
         'lifttime'      => 86400

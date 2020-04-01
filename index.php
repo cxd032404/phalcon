@@ -30,6 +30,7 @@ try {
 	header('Content-Type: application/json; charset=utf-8');
 
 	error_reporting(E_ALL);
+    require_once ROOT_PATH . "/vendor/autoload.php";
 
 	require_once ROOT_PATH . "/configs/bootstrap.php";
 
