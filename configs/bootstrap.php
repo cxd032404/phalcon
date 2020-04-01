@@ -20,6 +20,7 @@ use Phalcon\Logger\Formatter\Line as PhFormatterLine;
 use Phalcon\Cache\Backend\File as BackFile;
 use Phalcon\Cache\Frontend\Data as FrontData;
 use Phalcon\Mvc\View\Engine\Volt as PhVolt;
+use Predis\Client;
 
 class Bootstrap 
 {
@@ -217,9 +218,35 @@ class Bootstrap
 	protected function initWebRedis( $options = [] ): void
 	{
 		$di = $this->di;
+
+        $config = $this->di['config'];
+        foreach($config as $k => $c)
+        {
+            if($c['adapter'] == "Redis")
+            {
+                $this->di[$k] = function() use ( $c ) {
+                    $r =  new Client([
+                        'host'       => $c->host,
+                        'port'       => $c->port,
+                    ]);
+                    if($c->auth_password != "")
+                    {
+                        $r->auth($c->auth_password);
+                    }
+                    return $r;
+                };
+            }
+        }
+
+
+
+		/*
+ 		$di = $this->di;
 		$this->di['redis'] = function() use ($di) {
 			return new WebRedis();
 		};
+
+		*/
 	}
 
 

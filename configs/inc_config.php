@@ -41,6 +41,7 @@ $config = [
         'dbname'   => 'swoole_test2'
     ],
     'redis' => [
+        'adapter'       => 'Redis',
         'host'          => '127.0.0.1',
         'port'   		=> 6379,
         'auth_password' => '123456',
