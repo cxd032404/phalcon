@@ -17,17 +17,53 @@ use Phalcon\Mvc\Controller,
  */
 class BaseController extends Controller {
 
+
 	/**
-	 * 执行路由之前的事件
-	 * @access protected
+	 * 执行路由之前的事件（优先级003）
+	 * //@access protected
 	 * @author
 	 * 
 	 * @param $dispatcher 分发器
 	 * @return void || bool
 	 */
-	/*protected function beforeExecuteRoute(Dispatcher $dispatcher) {
-		
-	}*/
+	public function beforeExecuteRoute($dispatcher) {
+
+	    echo '<h1>beforeExecuteRoute!</h1>\n';
+	}
+	/**
+	 * 执行路由之后的事件
+	 * //@access protected
+	 * @author
+	 * 
+	 * @param $dispatcher 分发器
+	 * @return void || bool
+	 */
+	public function afterExecuteRoute($dispatcher) {
+
+    	echo '<h1>afterExecuteRoute!</h1>\n';
+	}
+	/**
+	 * 框架构造之初的事件（优先级001)
+	 * @author
+	 * 
+	 * @return void || bool
+	 */
+	public function onConstruct() {
+
+    	echo '<h1>onConstruct!</h1>\n';
+	}
+	/**
+	 * 框架初始化之初的事件(优先级002)
+	 * @author
+	 * 
+	 * @return void || bool
+	 */
+	public function initialize() {
+
+    	echo '<h1>initialize!</h1>\n';
+	}		
+
+
 
 	/**
 	 * 模板变量赋值
