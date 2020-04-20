@@ -57,7 +57,7 @@ $config = [
         'path'     => ROOT_PATH . '/runtime/logs/',
         'format'   => '%date% [%type%] %message%',
         'date'     => 'H:i:s',
-        //'logLevel' => Logger::DEBUG,
+        'logLevel' => Phalcon\Logger::DEBUG,
         'filename' => 'apps-'.date('Y-m-d') .'.log',
     ],
     'upload' => [

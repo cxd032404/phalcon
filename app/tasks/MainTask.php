@@ -30,5 +30,20 @@ class MainTask extends \Phalcon\Cli\Task
 		    $this->logger->error($e->getMessage());
 		}
 	}
+    public function testAction(array $params)
+    {
+        print_R($params);
+        try{
+            echo 'Welcome to you2';
+
+            $this->logger->info('Welcome to you');
+
+        }catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+        }
+    }
+
+
+
 
 }

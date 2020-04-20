@@ -11,27 +11,20 @@
 // +----------------------------------------------------------------------
 use Phalcon\Translate\Adapter\NativeArray;
 //use PHPExcel;
+use Monolog\Logger;
+use Monolog\Handler\ElasticsearchHandler;
+use Monolog\Formatter\ElasticsearchFormatter;
 
 class ApiController extends BaseController 
 {
 
 	public function testAction( $id = 0 ) 
 	{
-        $return = $this->database->fetchAll("show tables;");
-        $return1 = $this->database_1->fetchAll("select * from test_table;");
-        //print_R($return);print_R($return1);//die();
-        $redis = $this->redis->incr("redis-test");
-        //echo "redis:".$redis."\n";//phpinfo();
-        //die();
-        $yac = new Yac();
-        $key = 'key';
-        $yac->set( $key, ['id' => 111111]);
+	    $return  = (new TestService)->test();
+        //$return = $oService->test();
+        $this->logger->info(json_encode($return));
 
-        $ret = $yac->get($key);
-
-        //echo "<pre>";print_r( $yac->info() );exit;
-
-        return $this->success(["ret" => $ret,'redis'=>$redis,"r1"=>$return1,"r"=>$return]);
+        return $this->success($return);
     }
 
 }
