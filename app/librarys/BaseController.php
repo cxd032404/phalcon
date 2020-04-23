@@ -17,7 +17,7 @@ use Phalcon\Mvc\Controller,
  */
 class BaseController extends Controller {
 
-
+	public $sign;
 	/**
 	 * 执行路由之前的事件（优先级003）
 	 * //@access protected
@@ -27,8 +27,7 @@ class BaseController extends Controller {
 	 * @return void || bool
 	 */
 	public function beforeExecuteRoute($dispatcher) {
-
-	    echo '<h1>beforeExecuteRoute!</h1>\n';
+	    //echo '<h1>beforeExecuteRoute!</h1>\n';
 	}
 	/**
 	 * 执行路由之后的事件
@@ -38,9 +37,9 @@ class BaseController extends Controller {
 	 * @param $dispatcher 分发器
 	 * @return void || bool
 	 */
-	public function afterExecuteRoute($dispatcher) {
+	public function afterExecuteRoute() {
 
-    	echo '<h1>afterExecuteRoute!</h1>\n';
+    	//echo '<h1>afterExecuteRoute!</h1>\n';
 	}
 	/**
 	 * 框架构造之初的事件（优先级001)
@@ -50,7 +49,7 @@ class BaseController extends Controller {
 	 */
 	public function onConstruct() {
 
-    	echo '<h1>onConstruct!</h1>\n';
+    	//echo '<h1>onConstruct!</h1>\n';
 	}
 	/**
 	 * 框架初始化之初的事件(优先级002)
@@ -171,5 +170,11 @@ class BaseController extends Controller {
 		-> setStatusCode($status_code, '')
 		-> setContent($result) -> send();
 		exit;
+	}
+
+	public function __destruct()
+	{
+		echo "sign".$this->sign;
+		$this->afterExecuteRoute();
 	}
 }
