@@ -59,7 +59,7 @@ class BaseController extends Controller {
 	 */
 	public function initialize() {
 
-    	echo '<h1>initialize!</h1>\n';
+    	//echo '<h1>initialize!</h1>\n';
 	}		
 
 
@@ -174,7 +174,7 @@ class BaseController extends Controller {
 
 	public function __destruct()
 	{
-		echo "sign".$this->sign;
+		//echo "sign".$this->sign;
 		$this->afterExecuteRoute();
 	}
 }

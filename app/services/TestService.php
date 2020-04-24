@@ -9,15 +9,20 @@
 // | Author:   huzhichao@laoyuegou.com
 // | Created:  2017-xx-xx
 // +----------------------------------------------------------------------
-
-
+use Robots;
 class TestService extends BaseService
 {
 	private $msg = 'success';
 
 	public function test()
 	{
-		$return = $this->database->fetchAll("show tables;");
+        $oRobot = new Robots();
+	    //$oRobot->test();
+        $robot = $oRobot->findAll(777)->toArray();
+
+        print_R($robot);
+        die();
+        	$return = $this->database->fetchAll("show tables;");
         $return1 = $this->database_1->fetchAll("select * from test_table;");
         //print_R($return);print_R($return1);//die();
         $redis = $this->redis->incr("redis-test");
